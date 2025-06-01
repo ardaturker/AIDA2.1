@@ -1,306 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interest Section with Trust Badges</title>
-  <style>
-    /* =============================
-       COLOR PALETTE
-       • Orange:    #FF6600
-       • Dark Blue: #004B99
-       • Light Blue:#007BFF
-       • White:     #FFFFFF
-       • Gray Text: #333333
-    ============================= */
+<!-- Interest Section Wrapper -->
+<section id="interest" style="background-color: #F9F9F9; padding: 60px 0;">
+  <div class="container" style="max-width: 900px; margin: 0 auto;">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- 1. Short, Punchy Headline Under Hero -->
+    <h2 style="color: #004B99; font-size: 2rem; margin-bottom: 16px; text-align: center;">
+      No Finance Degree Needed—Get Started in Under 60 Seconds
+    </h2>
 
-    body {
-      font-family: "Segoe UI", Roboto, sans-serif;
-      color: #333333;
-      background-color: #F9F9F9;
-      line-height: 1.5;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 0;
-    }
-
-    h2 {
-      color: #004B99;
-      font-size: 2rem;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    /* Trust Badges */
-    .badges-row {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-    .badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #FFFFFF;
-      border: 2px solid #004B99;
-      border-radius: 20px;
-      padding: 8px 12px;
-      font-size: 0.875rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .badge-icon {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 0.75rem;
-    }
-    .badge-verified { background-color: #FF6600; }
-    .badge-secure   { background-color: #007BFF; }
-    .badge-regulated{ background-color: #FF6600; }
-    .badge-support  { background-color: #007BFF; }
-    .badge-text {
-      color: #004B99;
-      font-weight: 600;
-    }
-
-    /* Demo Video (reduced) */
-    .demo-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-    .demo-video {
-      position: relative;
-      border: 4px solid #FF6600;
-      border-radius: 8px;
-      overflow: hidden;
-      width: 25%;               /* 25% of container */
-      padding-top: 44.445%;     /* 9:16 aspect ratio at 25% width */
-    }
-    .demo-video img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .demo-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      text-align: center;
-    }
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 48px;
-      height: 48px;
-      background-color: rgba(255,255,255,0.8);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #004B99;
-    }
-
-    /* Benefit Bullets */
-    .benefits {
-      display: flex;
-      justify-content: space-around;
-      margin: 24px 0;
-    }
-    .benefit-item {
-      color: #333333;
-      font-weight: 600;
-    }
-
-    /* Glossary & Tips Panel */
-    .glossary-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #FFFFFF;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .glossary-header {
-      padding: 16px 24px;
-      background-color: #004B99;
-      color: #FFFFFF;
-      font-size: 1.125rem;
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-    }
-    .glossary-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      background: #FFFFFF;
-    }
-    .glossary-content ul {
-      list-style: none;
-      padding: 16px 24px;
-    }
-    .glossary-content li {
-      margin-bottom: 12px;
-      position: relative;
-    }
-    .glossary-content li:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Tooltip */
-    .tooltip {
-      color: #007BFF;
-      cursor: help;
-      text-decoration: underline dotted;
-      position: relative;
-    }
-    .tooltiptext {
-      visibility: hidden;
-      opacity: 0;
-      width: 180px;
-      background-color: #333333;
-      color: #FFFFFF;
-      text-align: center;
-      border-radius: 4px;
-      padding: 8px;
-      position: absolute;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-      font-size: 0.875rem;
-    }
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-    .tooltiptext::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 6px;
-      border-style: solid;
-      border-color: #333333 transparent transparent transparent;
-    }
-
-    /* Testimonials */
-    .testimonials {
-      margin: 32px auto;
-      max-width: 700px;
-      background: #FFFFFF;
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .testimonial-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .testimonial-icon {
-      color: #FF6600;
-      font-size: 1.5rem;
-    }
-    .testimonial-text {
-      color: #004B99;
-      font-weight: 600;
-      flex: 1;
-    }
-    .testimonial-author {
-      display: block;
-      color: #333333;
-      font-size: 0.875rem;
-      margin-top: 4px;
-    }
-
-    /* CTA Button */
-    .cta-wrapper {
-      text-align: center;
-      margin-top: 24px;
-    }
-    .cta-button {
-      background-color: #004B99;
-      color: #FFFFFF;
-      padding: 14px 32px;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-    .cta-button:hover {
-      background-color: #007BFF;
-    }
-  </style>
-</head>
-<body>
-
-  <section id="interest">
-    <div class="container">
-
-      <!-- 1. Headline -->
-      <h2>No Finance Degree Needed—Get Started in Under 60 Seconds</h2>
-
-      <!-- 2. Trust Badges Row -->
-      <div class="badges-row">
-        <div class="badge">
-          <div class="badge-icon badge-verified">✓</div>
-          <span class="badge-text">Verified Expert</span>
-        </div>
-        <div class="badge">
-          <div class="badge-icon badge-secure">🔒</div>
-          <span class="badge-text">Secure Platform</span>
-        </div>
-        <div class="badge">
-          <div class="badge-icon badge-regulated">⚖</div>
-          <span class="badge-text">Regulated</span>
-        </div>
-        <div class="badge">
-          <div class="badge-icon badge-support">📞</div>
-          <span class="badge-text">24/7 Support</span>
-        </div>
+    <!-- 2. Trust Badges Row -->
+    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px;">
+      <!-- Badge 1: Verified Expert -->
+      <div style="
+        display: flex; align-items: center; gap: 8px;
+        background-color: #FFFFFF; border: 2px solid #004B99;
+        border-radius: 20px; padding: 8px 12px; font-size: 0.875rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      ">
+        <div style="
+          width: 16px; height: 16px; background-color: #FF6600;
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          color: #FFFFFF; font-size: 0.75rem;
+        ">✓</div>
+        <span style="color: #004B99; font-weight: 600;">Verified Expert</span>
       </div>
 
-      <!-- 3. Portrait Demo Embed (25% width) -->
-      <div class="demo-wrapper">
-        <div class="demo-video">
-          <img src="thumbnail-demo
+      <!-- Badge 2: Secure Platform -->
+      <div style="
+        display: flex; align-items: center; gap: 8px;
+        background-color: #FFFFFF; border: 2px solid #004B99;
+        border-radius: 20px; padding: 8px 12px; font-size: 0.875rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      ">
+        <div style="
+          width: 16px; height: 16px; background-color: #007BFF;
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          color: #FFFFFF; font-size: 0.75rem;
+        ">🔒</div>
+        <span style="color: #004B99; font-weight: 600;">Secure Platform</span>
+      </div>
 
+      <!-- Badge 3: Regulated -->
+      <div style="
+        display: flex; align-items: center; gap: 8px;
+        background-color: #FFFFFF; border: 2px solid #004B99;
+        border-radius: 20px; padding: 8px 12px; font-size: 0.875rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      ">
+        <div style="
+          width: 16px; height: 16px; background-color: #FF6600;
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          color: #FFFFFF; font-size: 0.75rem;
+        ">⚖</div>
+        <span style="color: #004B99; font-weight: 600;">Regulated</span>
+      </div>
+
+      <!-- Badge 4: 24/7 Support -->
+      <div style="
+        display: flex; align-items: center; gap: 8px;
+        background-color: #FFFFFF; border: 2px solid #004B99;
+        border-radius: 20px; padding: 8px 12px; font-size: 0.875rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      ">
+        <div style="
+          width: 16px; height: 16px; background-color: #007BFF;
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          color: #FFFFFF; font-size: 0.75rem;
+        ">📞</div>
+        <span style="color: #004B99; font-weight: 600;">24/7 Support</span>
+      </div>
+    </div>
+
+    <!-- 3. Portrait Demo Embed (with empathy overlay) - Reduced to 25% Width -->
+    <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+      <div style="position: relative; border: 4px solid #FF6600; border-radius: 8px; overflow: hidden; width: 25%; padding-top: 44.445%; /* 9:16 aspect ratio scaled down to 25% width */">
+        <img
+          src="thumbnail-demo.jpg" 
+          alt="Demo Thumbnail" 
+          style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;"
+        />
+        <!-- Empathy Overlay -->
+        <div style="
+          position:absolute; top:0; left:0; width:100%; height:100%;
+          background: rgba(0,0,0,0.4); color: #FFFFFF;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1rem; text-align: center;
+          ">
+          Scared of Making Your First Trade?
+        </div>
+        <!-- Play Button -->
+        <a 
+          href="#play-demo" 
+          style="
+            position:absolute; top:50%; left:50%; transform: translate(-50%, -50%);
+            width: 48px; height: 48px; background-color: rgba(255,255,255,0.8);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: #004B99;
+          ">
+          ▶
+        </a>
+      </div>
+    </div>
+
+    <!-- 4. Ultra-Short Benefit Bullets -->
+    <div style="display: flex; justify-content: space-around; margin: 24px 0;">
+      <div style="color: #333333; font-weight: 600;">Zero Trading Jargon</div>
+      <div style="color: #333333; font-weight: 600;">Auto-Copy Top Traders</div>
+    </div>
+
+    <!-- 5. Collapsible “Glossary & Tips” Panel -->
+    <div style="max-width: 600px; margin: 0 auto; background: #FFFFFF; border-radius:8px; overflow:hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+      <div 
+        class="glossary-header" 
+        onclick="toggleGlossary(this)" 
+        style="
+          padding: 16px 24px; background-color: #004B99; color: #FFFFFF; 
+          font-size: 1.125rem; display: flex; justify-content: space-between; cursor: pointer;
+        ">
+        <span>Glossary & Tips</span>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="glossary-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #FFFFFF;">
+        <ul style="list-style:none; padding: 16px 24px;">
+          <li style="margin-bottom: 12px;">
+            <strong>What Is an Expert?</strong> 
+            <span class="tooltip" style="color: #007BFF; cursor: help; text-decoration: underline dotted;">
+              <!-- Hover -->
+              <span class="tooltiptext" style="
+                visibility:hidden; opacity:0; width:180px; 
+                background:#333333; color:#FFFFFF; text-align:center; border-radius:4px; 
+                padding:8px; position:absolute; bottom:125%; left:50%; transform:translateX(-50%);
+                transition:opacity 0.2s ease; font-size:0.875rem; pointer-events:none;
+              ">
+                A trader whose real-money performance is verified for 12 months.
+              </span>
+              Click to Define
+            </span>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <strong>How Do I Set My Budget?</strong> 
+            <span class="tooltip" style="color: #007BFF; cursor: help; text-decoration: underline dotted;">
+              <span class="tooltiptext" style="
+                visibility:hidden; opacity:0; width:180px; 
+                background:#333333; color:#FFFFFF; text-align:center; border-radius:4px; 
+                padding:8px; position:absolute; bottom:125%; left:50%; transform:translateX(-50%);
+                transition:opacity 0.2s ease; font-size:0.875rem; pointer-events:none;
+              ">
+                You can start with as little as €10; change any time.
+              </span>
+              Hover to Learn
+            </span>
+          </li>
+          <li>
+            <strong>Understanding Risk Controls</strong> 
+            <span class="tooltip" style="color: #007BFF; cursor: help; text-decoration: underline dotted;">
+              <span class="tooltiptext" style="
+                visibility:hidden; opacity:0; width:180px; 
+                background:#333333; color:#FFFFFF; text-align:center; border-radius:4px; 
+                padding:8px; position:absolute; bottom:125%; left:50%; transform:translateX(-50%);
+                transition:opacity 0.2s ease; font-size:0.875rem; pointer-events:none;
+              ">
+                Our built-in stop-loss tool limits drawdowns to 5%.
+              </span>
+              Hover to Learn
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. Micro-Testimonials Carousel -->
+    <div style="margin: 32px auto; max-width: 700px; background:#FFFFFF; border-radius:8px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+      <div class="testimonial" style="display:flex; align-items:center; gap:8px;">
+        <div style="color:#FF6600; font-size:1.5rem;">❝</div>
+        <p style="color:#004B99; font-weight:600; flex:1;">
+          “I had zero trading experience, but after watching the demo, I copied my first expert in under a minute.” 
+          <span style="display:block; color:#333333; font-size:0.875rem; margin-top:4px;">—Anna, 28</span>
+        </p>
+      </div>
+      <!-- In practice, rotate a second or third testimonial here via JS. -->
+    </div>
+
+    <!-- 7. Clear CTA Button -->
+    <div style="text-align:center; margin-top: 24px;">
+      <a 
+        href="#start-tutorial" 
+        style="
+          background-color: #004B99; color: #FFFFFF; padding: 14px 32px; 
+          border-radius: 4px; font-size: 1rem; font-weight:600; transition: background-color 0.2s ease;
+        "
+        onmouseover="this.style.backgroundColor='#007BFF'"
+        onmouseout="this.style.backgroundColor='#004B99'"
+      >
+        Start My First Copy-Trade
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function toggleGlossary(headerEl) {
+    const content = headerEl.nextElementSibling;
+    headerEl.classList.toggle('open');
+    const arrow = headerEl.querySelector('.arrow');
+    if (headerEl.classList.contains('open')) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      arrow.style.transform = 'rotate(180deg)';
+    } else {
+      content.style.maxHeight = '0';
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+  // Tooltip hover handled via CSS :hover rules in actual implementation.
+</script>
